@@ -1,12 +1,7 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 
-class Listitem extends Component { 
-
-    click = () => {
-        if (typeof this.props.act === 'function') {
-            this.props.act(this.props.data.id)
-        }
-    }
+class Listitem extends Component {
 
     render(){
         let post = this.props.data
@@ -14,7 +9,9 @@ class Listitem extends Component {
             ? post._embedded['wp:featuredmedia'][0].source_url : ""
 
         return <div className="blog-post" data-id={ post.id } >
-            <h3 className="title" onClick={this.click.bind(this)} >{post.title.rendered} <small>{post.date}</small></h3>
+            <Link to={ "/detail/"+post.id } >
+                <h3 className="title" >{post.title.rendered} <small>{post.date}</small></h3>
+            </Link>
             <img className="thumbnail" src={image} alt="" />
             <div className="callout">
                 <ul className="menu simple">

@@ -11,12 +11,6 @@ class List extends Component {
         }
     }
 
-    detail = (postid) => {
-        if (typeof this.props.act === 'function') {
-            this.props.act({action:"detail",id:postid})
-        }
-    }
-
     componentDidMount() {
       fetch(POST_LIST)
         .then(response => {
@@ -37,13 +31,11 @@ class List extends Component {
         })
     }
 
-
-
     render(){
         
         return <div className="medium-8 columns" id="main-content">
         {
-            this.state.posts.map( post=> <Listitem data={post} key={post.id} act={this.detail.bind(this)} /> )
+            this.state.posts.map( post=> <Listitem data={post} key={post.id} /> )
         }
         </div>
     }

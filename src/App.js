@@ -7,21 +7,16 @@ import List from './components/list';
 import Detail from './components/detail';
 import Sidebar from './components/sidebar';
 import {SITE_INFO} from './Apis';
+import { BrowserRouter as Router, Route  } from 'react-router-dom'
 
 class App extends Component {
 
   constructor(props) {
     super(props)
-    this.route = this.route.bind(this)
     this.state = {
       data: [],
-      action: "",
       fetching:true
     }
-  }
-
-  route(action){
-    this.setState(action)
   }
 
   componentDidMount() {
@@ -48,14 +43,15 @@ class App extends Component {
 
   render() {
     return (
+      <Router>
       <div className="App">
         <Top data={this.state.data} />
         <Topdesc data={this.state.data} />
-        {
-          this.state.action === "detail" ? <Detail id={this.state.id} key={this.state.id} /> :  <List act={this.route} />
-        }
+            <Route exact path="/" component={List} />
+            <Route path="/detail/:id" component={Detail} /> 
         <Sidebar/>
       </div>
+      </Router>
     );
   }
 }

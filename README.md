@@ -1,4 +1,4 @@
-This is advanced version from github.com/minhfuji/WPRestfulAPI_reactjs, apply React Route
+This is advanced version from github.com/minhfuji/WPRestfulAPI_reactjs, apply React Router
 
 # Backend
 

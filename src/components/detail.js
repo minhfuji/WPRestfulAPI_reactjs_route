@@ -1,10 +1,15 @@
 import React, { Component } from 'react';
 import {POST_DETAIL} from './../Apis';
+import { Link } from 'react-router-dom'
 
 class Detail extends Component {
+    constructor(prop) {
+        super()
+        this.id = prop.match.params.id
+    }
 
     componentDidMount() {
-        const url = POST_DETAIL.replace('_id_',this.props.id)
+        const url = POST_DETAIL.replace('_id_',this.id)
         fetch(url)
           .then(response => {
             if (!response.ok) {
@@ -33,7 +38,7 @@ class Detail extends Component {
 
         return <div className="medium-8 columns" id="main-content">
             <div className="blog-post" data-id={post.id} >
-                <a href="index.html" className="button back-button">Go back</a>
+                <Link to="/" className="button back-button">Go back</Link>
                 <h3>{post.title.rendered} <small>{post.date}</small></h3>
                 <img className="thumbnail" src={image} alt="" />
                 <div dangerouslySetInnerHTML={{__html: post.content.rendered }}></div>
